@@ -1,3 +1,12 @@
 # Default lookup dictionary
+
 flask_webserver:
   www_user: nginx
+  saltstack_formula_dependencies:
+    - nginx
+    - uwsgi
+  # saltstack_formula_dependencies:
+  #   - name: nginx-formula
+  #     folder: nginx
+  #   - name: uwsgi-formula
+  #     folder: uwsgi
