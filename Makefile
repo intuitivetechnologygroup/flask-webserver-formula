@@ -1,21 +1,21 @@
+FORMULA_NAME = "flask_webserver"
 PWD = $(shell pwd)
 
 # ---------------------------------------------------------------
 define render_dockerfile
-	python $(PWD)/flask_webserver/tests/filltmpl.py $(1)
+	python $(PWD)/tools/filltmpl.py $(FORMULA_NAME) $(1)
 endef
 
 define docker_build
-	cd $(PWD)/flask_webserver && \
-	  docker build --force-rm -t flask_webserver:salt-testing-$(1) -t flask_webserver:local-salt-testing-$(1) -f tests/Dockerfile.$(1) .
+	docker build --force-rm -t $(FORMULA_NAME):salt-testing-$(1) -f Dockerfile.$(1) .
 endef
 
 define docker_run_local
-	docker run --rm -v $(PWD)/flask_webserver:/opt/flask_webserver --env=STAGE=TEST -h local-salt-testing-$(1) --name local-salt-testing-$(1) -it flask_webserver:local-salt-testing-$(1) /bin/bash
+	docker run --rm -v $(PWD):/opt/$(FORMULA_NAME)-formula --env=STAGE=TEST -h salt-testing-$(1) --name salt-testing-$(1) -it $(FORMULA_NAME):salt-testing-$(1) /bin/bash
 endef
 
 define run_tests
-	cd $(PWD)/flask_webserver/tests && ./run-tests.sh $(1)
+	./tools/run-tests.sh $(FORMULA_NAME) $(1)
 endef
 
 # --- convenience functions -------------------------------------
@@ -32,7 +32,7 @@ define run_local
 endef
 
 # ---------------------------------------------------------------
-test-setup:
+setup:
 	pip install Jinja2
 
 clean:
@@ -55,12 +55,12 @@ test-debian_master_2017.7.2: clean
 local-debian_master_2017.7.2: clean
 	$(call run_local,debian_master_2017.7.2)
 
-# --- ubuntu_master_2017.7.2 ------------------------------------
-test-ubuntu_master_2017.7.2: clean
-	$(call run_local_tests,ubuntu_master_2017.7.2)
+# --- opensuse_master_2017.7.2 ------------------------------------
+test-opensuse_master_2017.7.2: clean
+	$(call run_local_tests,opensuse_master_2017.7.2)
 
-local-ubuntu_master_2017.7.2: clean
-	$(call run_local,ubuntu_master_2017.7.2)
+local-opensuse_master_2017.7.2: clean
+	$(call run_local,opensuse_master_2017.7.2)
 
 # --- ubuntu_master_2016.11.3 ------------------------------------
 test-ubuntu_master_2016.11.3: clean
@@ -68,3 +68,10 @@ test-ubuntu_master_2016.11.3: clean
 
 local-ubuntu_master_2016.11.3: clean
 	$(call run_local,ubuntu_master_2016.11.3)
+
+# --- ubuntu_master_2017.7.2 ------------------------------------
+test-ubuntu_master_2017.7.2: clean
+	$(call run_local_tests,ubuntu_master_2017.7.2)
+
+local-ubuntu_master_2017.7.2: clean
+	$(call run_local,ubuntu_master_2017.7.2)

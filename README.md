@@ -27,10 +27,10 @@ source .venv/bin/activate
 
 * install requirements: `make test-setup`
 * run a test:
-  - `make test_centos_master_2017.7.2`
-  - `make test_debian_master_2017.7.2`
-  - `make test_ubuntu_master_2017.7.2`
-  - `make test_ubuntu_master_2016.11.3`
+  - `make test-centos_master_2017.7.2`
+  - `make test-debian_master_2017.7.2`
+  - `make test-ubuntu_master_2017.7.2`
+  - `make test-ubuntu_master_2016.11.3`
 * test results will return to your screen.
 
 
