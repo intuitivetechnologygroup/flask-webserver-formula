@@ -1,0 +1,13 @@
+{% import_yaml "flask_webserver/defaults.yaml" as defaults %}
+{% import_yaml "flask_webserver/osmap.yaml" as osmap %}
+
+{% set flask_webserver = salt['grains.filter_by'](
+  defaults,
+  merge=salt['grains.filter_by'](
+        osmap,
+        grain='os_family',
+        merge=salt['pillar.get']('flask_webserver', {}),
+        ),
+  base = 'flask_webserver',
+)
+%}
