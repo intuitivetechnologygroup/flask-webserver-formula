@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/intuitivetechnologygroup/flask-webserver-formula.svg?branch=master)](https://travis-ci.org/intuitivetechnologygroup/flask-webserver-formula)
-
 # Flask Webserver
+
+[![Build Status](https://travis-ci.org/intuitivetechnologygroup/flask-webserver-formula.svg?branch=master)](https://travis-ci.org/intuitivetechnologygroup/flask-webserver-formula)
 
 Formulas to set up a webserver for flask applications.
 
@@ -12,8 +12,15 @@ See the full Salt Formulas installation and usage instructions
 `make` is on your system and available. If it is not or you are not sure what
 `make` is, [this](https://www.gnu.org/software/make/) is a good place to start.
 
+---
 
-## Testing
+* [Testing](#testing)
+* [Available States](#available-states)
+* [Pillar Customizations](#pillar-customizations)
+
+---
+
+## <a name="testing"></a> Testing
 
 The ***Makefile*** is located in the project base directory.
 
@@ -34,12 +41,16 @@ source .venv/bin/activate
 * test results will return to your screen.
 
 
-## Available States
+## <a name="available-states"></a> Available States
+
+### `flask_webserver.dependencies`
+
+Gathers salt formulas required to provision the webserver.
 
 ### `flask_webserver`
 
 
-## Pillar Customizations
+## <a name="pillar-customizations"></a> Pillar Customizations
 
 Any of these values can be overwritten in a pillar file. If you do find yourself needing
 more overrides follow the example below.
