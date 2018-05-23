@@ -2,9 +2,8 @@ Debian:
   packages:
     - python3
     - python3-pip
-    - virtualenv
 
 RedHat:
   packages:
     - python36u
-    - python36u-pip.noarch
+    - python36u-pip
