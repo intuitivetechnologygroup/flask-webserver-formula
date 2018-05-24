@@ -4,11 +4,9 @@ flask_webserver:
   www_user: nginx
   pip_dependencies:
     - virtualenv
-  saltstack_formula_dependencies:
-    - nginx
     - uwsgi
-  # saltstack_formula_dependencies:
+  formula_dependencies:
+    - nginx
+  # formula_dependencies:
   #   - name: nginx-formula
   #     folder: nginx
-  #   - name: uwsgi-formula
-  #     folder: uwsgi

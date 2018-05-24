@@ -1,6 +1,6 @@
 {% from "flask_webserver/map.jinja" import flask_webserver with context %}
 
-{% for package in flask_webserver.saltstack_formula_dependencies %}
+{% for package in flask_webserver.formula_dependencies %}
 "Clone {{ package }}":
   git.latest:
     - name: "https://github.com/saltstack-formulas/{{ package }}-formula.git"
