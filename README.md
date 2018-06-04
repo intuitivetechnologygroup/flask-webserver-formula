@@ -14,11 +14,35 @@ See the full Salt Formulas installation and usage instructions
 
 ---
 
+* [Development](#development)
 * [Testing](#testing)
 * [Available States](#available-states)
 * [Pillar Customizations](#pillar-customizations)
 
 ---
+
+## <a name="development"></a> Development
+
+Notes:
+
+```bash
+make local-centos_master_2017.7.2
+# now your in the container....
+
+# collect formula dependencies
+salt-call -l all --local state.apply flask_webserver.dependencies
+
+# run the flask_webserver state
+salt-call -l all --local state.apply flask_webserver
+
+# copy nginx pillar
+cp -r /opt/flask_webserver-formula/pillar /srv/pillar
+salt-call --local saltutil.refresh_pillar
+
+# run the nginx state
+salt-call -l all --local state.apply nginx
+```
+
 
 ## <a name="testing"></a> Testing
 

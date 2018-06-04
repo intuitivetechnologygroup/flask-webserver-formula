@@ -6,3 +6,4 @@ include:
   {% elif grains['os_family'] == 'Debian' %}
   - flask_webserver/debian
   {% endif %}
+  - flask_webserver/pysetup
